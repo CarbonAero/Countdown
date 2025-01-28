@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 02/02/25</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .countdown {
+            text-align: center;
+        }
+        .countdown h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .countdown div {
+            font-size: 2rem;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>Countdown Unitl Im Home!</h1>
+        <div id="timer">Loading...</div>
+    </div>
+    <script>
+        function startCountdown() {
+            const targetDate = new Date('February 2, 2025 15:45:00 EST').getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById('timer').innerHTML =
+                        `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+                } else {
+                    document.getElementById('timer').innerHTML = "It's time!";
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>
